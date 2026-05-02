@@ -5,6 +5,7 @@
   "description": "Claude Skills Marketplace for Engineering Teams at Mirantis",
   "owner": {
     "name": "Mirantis Marketplace 1 Support",
-    "email": "support-m1@mirantis.com"
+    "email": "support-m1@mirantis.com",
+    "description": "www.mirantis.com"
   }
 }
