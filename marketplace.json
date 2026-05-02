@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
+  "name": "mplace1",
+  "version": "0.1.0",
+  "description": "Claude Skills Marketplace for Engineering Teams at Mirantis",
+  "owner": {
+    "name": "Mirantis Marketplace 1 Support",
+    "email": "support-m1@mirantis.com"
+  }
+}
