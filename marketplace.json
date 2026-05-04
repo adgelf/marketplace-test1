@@ -7,5 +7,13 @@
     "name": "Mirantis Marketplace 1 Support",
     "email": "support-m1@mirantis.com",
     "description": "www.mirantis.com"
-  }
+  },
+  "plugins": [
+    {
+      "name": "threadmodeller",
+      "source": "./plugins/threadmodeller",
+      "description": "Threat modeling skill (LM-7 Phase 2 test plugin)",
+      "version": "0.1.0"
+    }
+  ]
 }
