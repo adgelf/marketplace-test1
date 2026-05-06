@@ -31,7 +31,7 @@ You need **Claude Code** installed and running. If you haven't done that yet, as
 Add the Mirantis plugins marketplace to your Claude Code installation. Open a terminal, start Claude Code, and run:
 
 ```
-/plugin marketplace add https://adgelf.github.io/marketplace-test1/marketplace.json
+/plugin marketplace add adgelf/marketplace-test1
 ```
 
 You only need to do this once. Claude Code will remember it.
