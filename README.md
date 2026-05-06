@@ -79,7 +79,7 @@ Claude Code will run the skill in the context of whatever you're working on.
 When new plugins are added or existing ones are updated, refresh your local list:
 
 ```
-/plugin marketplace update mirantis-plugins
+/plugin marketplace update mplace1
 ```
 
 Then reinstall any plugins you want to update.
