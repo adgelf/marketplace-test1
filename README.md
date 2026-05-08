@@ -4,7 +4,7 @@ This marketplace is where Mirantis teams share Claude Code plugins — packaged 
 
 ---
 
-## Claude Skills Marketplace for Engineering Teams at Mirantis
+## Mirantis Plugin Marketplace
 
 ---
 
