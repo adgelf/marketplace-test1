@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<!--
+  Copyright (c) 2026, Mirantis, Inc.
+  SPDX-License-Identifier: BSD-3-Clause-Attribution
+  See LICENSE in the repo root for the full text.
+
+  Auto-generated from docs/marketplace.template.html by
+  scripts/render-marketplace-html.py (LM-11). Do not edit by hand —
+  changes will be overwritten on the next workflow run.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Claude Skills Marketplace for Engineering Teams at Mirantis — Claude Plugins Marketplace</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-page:        #ffffff;
+    --bg-tile:        #e6f0ed;
+    --bg-tile-hover:  #d8e6e2;
+    --bg-panel:       #ffffff;
+    --bg-mindset:     #2c8f7f;
+
+    --fg-body:        #214666;
+    --fg-title:       #471b37;
+    --fg-desc:        #979395;
+    --fg-heading:     #001021;
+    --fg-on-accent:   #ffffff;
+
+    --accent-cta:     #f6c544;   /* yellow — primary CTA */
+    --accent-cta-fg:  #1a1a1a;
+    --accent-warn:    #ee6b5a;   /* coral — warnings/incidents */
+    --accent-info:    #6e42a4;   /* purple — informational CTAs */
+    --accent-tab:     #2c8f7f;   /* teal — rotated side tab */
+
+    --border-soft:    #e3e8ef;
+    --shadow-sm:      0 1px 2px rgba(0, 16, 33, 0.04);
+    --shadow-md:      0 4px 12px rgba(0, 16, 33, 0.08);
+
+    --radius:         8px;
+    --gap:            16px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg-page);
+    color: var(--fg-body);
+    font-family: 'Lato', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* ------------------------------------------------------------------ */
+  /* Layout                                                              */
+  /* ------------------------------------------------------------------ */
+  .marketplace {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 32px 24px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 320px;
+    align-items: start;
+    gap: 32px;
+  }
+
+  @media (max-width: 960px) {
+    .marketplace { grid-template-columns: 1fr; }
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* Marketplace header (intro to this catalog page)                     */
+  /* ------------------------------------------------------------------ */
+  .marketplace-intro {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 8px;
+  }
+  .marketplace-intro h1 {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--fg-heading);
+    letter-spacing: -0.01em;
+  }
+  .marketplace-intro .meta {
+    font-size: 13px;
+    color: var(--fg-desc);
+  }
+  .marketplace-intro .meta strong { color: var(--fg-body); font-weight: 700; }
+
+  /* ------------------------------------------------------------------ */
+  /* Plugin tile grid (left column)                                      */
+  /* ------------------------------------------------------------------ */
+  .plugin-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    grid-auto-rows: min-content;
+    align-items: start;
+    gap: var(--gap);
+  }
+
+  .tile {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 20px 14px;
+    background: var(--bg-tile);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    transition: background 120ms ease, box-shadow 120ms ease, transform 120ms ease;
+    text-decoration: none;
+    color: inherit;
+    min-height: 88px;
+  }
+  .tile:hover {
+    background: var(--bg-tile-hover);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-1px);
+    text-decoration: none;
+  }
+
+  .tile-icon {
+    flex: 0 0 40px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #ffffff;
+    display: grid;
+    place-items: center;
+    font-weight: 900;
+    color: var(--fg-title);
+    font-size: 15px;
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+  }
+  .tile-icon img { width: 100%; height: 100%; object-fit: contain; }
+
+  .tile-body { min-width: 0; }
+  .tile-title {
+    margin: 0 0 2px;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--fg-title);
+    line-height: 1.25;
+  }
+  .tile-desc {
+    margin: 0;
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--fg-desc);
+    line-height: 1.4;
+  }
+
+  .tile-info {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: rgba(0, 16, 33, 0.06);
+    color: var(--fg-body);
+    display: grid;
+    place-items: center;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1;
+  }
+  .tile-info:hover { background: rgba(0, 16, 33, 0.12); }
+
+  /* ------------------------------------------------------------------ */
+  /* Sidebar (right column)                                              */
+  /* ------------------------------------------------------------------ */
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .sidebar .cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 14px 16px;
+    border-radius: var(--radius);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    box-shadow: var(--shadow-sm);
+  }
+  .sidebar .cta:hover { box-shadow: var(--shadow-md); text-decoration: none; }
+
+  .sidebar .cta--primary { background: var(--accent-cta); color: var(--accent-cta-fg); }
+  .sidebar .cta--warn    { background: var(--accent-warn); color: var(--fg-on-accent); }
+  .sidebar .cta--info    { background: var(--accent-info); color: var(--fg-on-accent); }
+
+  .panel {
+    background: var(--bg-panel);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius);
+    padding: 16px;
+  }
+  .panel h2 {
+    margin: 0 0 8px;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--fg-heading);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .panel h2 .panel-icon {
+    width: 18px; height: 18px;
+    flex: 0 0 18px;
+    color: var(--fg-heading);
+  }
+  .panel ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .panel li a {
+    display: block;
+    padding: 4px 0;
+    font-size: 14px;
+    color: var(--fg-body);
+  }
+  .panel li a:hover { color: var(--fg-title); text-decoration: underline; }
+
+  .panel--mindset {
+    background: var(--bg-mindset);
+    border-color: transparent;
+    color: var(--fg-on-accent);
+  }
+  .panel--mindset h2 { color: var(--fg-on-accent); }
+  .panel--mindset li { color: var(--fg-on-accent); font-weight: 700; }
+
+  /* ------------------------------------------------------------------ */
+  /* Code chips inside text                                              */
+  /* ------------------------------------------------------------------ */
+  code, .chip {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.9em;
+    background: rgba(0, 16, 33, 0.06);
+    padding: 1px 6px;
+    border-radius: 4px;
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* Copy-to-clipboard button (LM-12)                                    */
+  /* ------------------------------------------------------------------ */
+  .copy-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: -3px;
+    width: 22px;
+    height: 22px;
+    margin-left: 4px;
+    padding: 0;
+    border: 0;
+    border-radius: 4px;
+    background: transparent;
+    color: var(--fg-body);
+    cursor: pointer;
+    transition: background 120ms ease, color 120ms ease;
+  }
+  .copy-btn:hover  { background: rgba(0, 16, 33, 0.06); color: var(--fg-title); }
+  .copy-btn:active { background: rgba(0, 16, 33, 0.12); }
+  .copy-btn:focus-visible {
+    outline: 2px solid var(--accent-tab);
+    outline-offset: 2px;
+  }
+  .copy-btn svg          { width: 14px; height: 14px; }
+  .copy-btn .icon-check  { display: none; color: var(--accent-tab); }
+  .copy-btn.copied .icon-copy  { display: none; }
+  .copy-btn.copied .icon-check { display: inline-block; }
+  .copy-btn.copied::after {
+    content: 'Copied!';
+    position: absolute;
+    bottom: calc(100% + 4px);
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 2px 6px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--fg-on-accent);
+    background: var(--accent-tab);
+    border-radius: 4px;
+    white-space: nowrap;
+    pointer-events: none;
+  }
+</style>
+</head>
+<body>
+
+<main class="marketplace" aria-labelledby="marketplace-title">
+
+  <header class="marketplace-intro">
+    <h1 id="marketplace-title">Claude Skills Marketplace for Engineering Teams at Mirantis</h1>
+    <div class="meta">
+      <strong>1</strong> plugins ·
+      version <strong>0.1.0</strong> ·
+      updated <strong>2026-05-08</strong> ·
+      add with <code>/plugin marketplace add adgelf/marketplace-test1</code><button type="button" class="copy-btn" aria-label="Copy install command"><svg class="icon-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button>
+    </div>
+  </header>
+
+  <!-- ============================================================== -->
+  <!-- Plugin tile grid. Repeat <a class="tile"> per plugin.          -->
+  <!-- ============================================================== -->
+  <section class="plugin-grid" aria-label="Available plugins">
+
+    <a class="tile" href="#threadmodeller" aria-label="Threadmodeller — Threat modeling skill (test plugin)">
+      <span class="tile-icon" aria-hidden="true">TH</span>
+      <div class="tile-body">
+        <p class="tile-title">Threadmodeller</p>
+        <p class="tile-desc">Threat modeling skill (test plugin)</p>
+      </div>
+      <a class="tile-info" href="./plugins/threadmodeller/README.md" aria-label="Documentation for Threadmodeller">i</a>
+    </a>
+  </section>
+
+  <!-- ============================================================== -->
+  <!-- Sidebar                                                         -->
+  <!-- ============================================================== -->
+  <aside class="sidebar" aria-label="Marketplace actions">
+
+    <a class="cta cta--primary" href="#submit">
+      Submit a plugin
+      <span aria-hidden="true">＋</span>
+    </a>
+
+    <section class="panel" aria-labelledby="panel-getting-started">
+      <h2 id="panel-getting-started">Getting started</h2>
+      <ul>
+        <li><a href="#one-time-setup">One-time setup</a></li>
+        <li><a href="#browse">Browse plugins</a></li>
+        <li><a href="#install">Install a plugin</a></li>
+        <li><a href="#update">Keep plugins updated</a></li>
+      </ul>
+    </section>
+
+    <section class="panel" aria-labelledby="panel-categories">
+      <h2 id="panel-categories">Categories</h2>
+      <ul>
+        <li><a href="#cat-review">Review &amp; quality</a></li>
+        <li><a href="#cat-docs">Documentation</a></li>
+        <li><a href="#cat-workflow">Workflow &amp; automation</a></li>
+        <li><a href="#cat-data">Data &amp; databases</a></li>
+        <li><a href="#cat-frontend">Frontend</a></li>
+      </ul>
+    </section>
+
+    <section class="panel" aria-labelledby="panel-devtools">
+      <h2 id="panel-devtools">Plugin dev tools</h2>
+      <ul>
+        <li><a href="#tool-scaffold"><code>/plugin-scaffold</code></a></li>
+        <li><a href="#tool-docs-lint"><code>/plugin-docs-lint</code></a></li>
+        <li><a href="#tool-security"><code>/plugin-security-check</code></a></li>
+        <li><a href="#tool-submit"><code>/submit-plugin</code></a></li>
+      </ul>
+    </section>
+
+    <a class="cta cta--info" href="#contribute">
+      Contribute
+      <span aria-hidden="true">→</span>
+    </a>
+
+    <a class="cta cta--warn" href="#report-issue">
+      Report an issue
+      <span aria-hidden="true">!</span>
+    </a>
+
+    <section class="panel panel--mindset" aria-labelledby="panel-principles">
+      <h2 id="panel-principles">Curation principles</h2>
+      <ul>
+        <li>Speed over perfection</li>
+        <li>Reuse before reinvention</li>
+        <li>Documentation is part of the plugin</li>
+        <li>Security check before merge</li>
+      </ul>
+    </section>
+
+    <section class="panel" aria-labelledby="panel-owner">
+      <h2 id="panel-owner">Maintainer</h2>
+      <ul>
+        <li><strong>Mirantis Marketplace 1 Support</strong></li>
+        <li><a href="mailto:support-m1@mirantis.com">support-m1@mirantis.com</a></li>
+      </ul>
+    </section>
+
+  </aside>
+
+</main>
+
+<script>
+  // LM-12: copy-to-clipboard for the install command in the status line.
+  // The button reads its source text from the immediately preceding <code>
+  // element, so the displayed value and the copied value cannot drift.
+  (function () {
+    function flash(btn) {
+      btn.classList.add('copied');
+      var label = btn.getAttribute('aria-label');
+      btn.setAttribute('aria-label', 'Copied');
+      setTimeout(function () {
+        btn.classList.remove('copied');
+        btn.setAttribute('aria-label', label || 'Copy install command');
+      }, 1200);
+    }
+    function fallback(text, ok) {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed';
+      ta.style.left = '-9999px';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); ok(); } catch (e) { /* ignore */ }
+      document.body.removeChild(ta);
+    }
+    document.addEventListener('click', function (e) {
+      var btn = e.target.closest('.copy-btn');
+      if (!btn) return;
+      var src = btn.previousElementSibling;
+      if (!src || src.tagName !== 'CODE') return;
+      var text = src.textContent.trim();
+      var ok = function () { flash(btn); };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(ok, function () { fallback(text, ok); });
+      } else {
+        fallback(text, ok);
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>
