@@ -8,6 +8,7 @@ This marketplace is where Mirantis teams share Claude Code plugins — packaged 
 
 ---
 
+<info>
 ## Plugins and skills
 
 Two terms you will see throughout this site:
@@ -18,15 +19,14 @@ Two terms you will see throughout this site:
 
 In practice, many plugins contain exactly one skill with the same name as the plugin itself. More capable plugins may bundle several related skills together.
 
+</info>
 ---
 
-## Prerequisites
-
+<setup>
 You need **Claude Code** installed and running. If you haven't done that yet, ask IT — setup takes about five minutes and your Mirantis credentials are all you need.
 
 ---
 
-## One-time setup
 
 Add the Mirantis plugins marketplace to your Claude Code installation. Open a terminal, start Claude Code, and run:
 
@@ -36,9 +36,12 @@ Add the Mirantis plugins marketplace to your Claude Code installation. Open a te
 
 You only need to do this once. Claude Code will remember it.
 
+</setup>
 ---
 
 ## Browse available plugins
+
+<browse>
 
 To see what's available:
 
@@ -46,10 +49,13 @@ To see what's available:
 /plugin list
 ```
 
+</browse>
 ---
+
 
 ## Install a plugin
 
+<install>
 ```
 /plugin install <plugin-name>@mirantis-plugins
 ```
@@ -60,9 +66,12 @@ Replace `<plugin-name>` with the name of the plugin you want. For example:
 /plugin install example-skill@mirantis-plugins
 ```
 
+</install>
 ---
 
 ## Use a skill
+
+<useskill>
 
 Once a plugin is installed, invoke its skill by typing `/` followed by the skill name:
 
@@ -72,9 +81,12 @@ Once a plugin is installed, invoke its skill by typing `/` followed by the skill
 
 Claude Code will run the skill in the context of whatever you're working on.
 
+</useskill>
 ---
 
 ## Keep plugins up to date
+
+<keep_updated>
 
 When new plugins are added or existing ones are updated, refresh your local list:
 
@@ -83,6 +95,8 @@ When new plugins are added or existing ones are updated, refresh your local list
 ```
 
 Then reinstall any plugins you want to update.
+
+</keep_updated>
 
 ---
 

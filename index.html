@@ -266,6 +266,81 @@
   }
 
   /* ------------------------------------------------------------------ */
+  /* About dialog (LM-14)                                                */
+  /* ------------------------------------------------------------------ */
+  dialog#about-dialog {
+    max-width: 560px;
+    width: calc(100% - 32px);
+    padding: 0;
+    border: 0;
+    border-radius: var(--radius);
+    background: var(--bg-panel);
+    color: var(--fg-body);
+    box-shadow: 0 24px 64px rgba(0, 16, 33, 0.25);
+  }
+  dialog#about-dialog::backdrop {
+    background: rgba(0, 16, 33, 0.5);
+    backdrop-filter: blur(2px);
+  }
+  dialog#about-dialog header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border-soft);
+  }
+  dialog#about-dialog header h2 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--fg-heading);
+  }
+  dialog#about-dialog .dialog-close {
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: var(--fg-body);
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+  }
+  dialog#about-dialog .dialog-close:hover {
+    background: rgba(0, 16, 33, 0.06);
+    color: var(--fg-title);
+  }
+  dialog#about-dialog .dialog-body {
+    padding: 16px 20px 20px;
+    max-height: 60vh;
+    overflow: auto;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  dialog#about-dialog .dialog-body :first-child { margin-top: 0; }
+  dialog#about-dialog .dialog-body :last-child  { margin-bottom: 0; }
+  dialog#about-dialog .dialog-body h1,
+  dialog#about-dialog .dialog-body h2,
+  dialog#about-dialog .dialog-body h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--fg-heading);
+    margin: 14px 0 6px;
+  }
+  dialog#about-dialog .dialog-body p { margin: 0 0 10px; }
+  dialog#about-dialog .dialog-body code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    background: rgba(0, 16, 33, 0.06);
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-size: 0.9em;
+  }
+  dialog#about-dialog .dialog-body strong { color: var(--fg-title); }
+  .about-link { cursor: pointer; }
+
+  /* ------------------------------------------------------------------ */
   /* Copy-to-clipboard button (LM-12)                                    */
   /* ------------------------------------------------------------------ */
   .copy-btn {
@@ -354,6 +429,7 @@
     <section class="panel" aria-labelledby="panel-getting-started">
       <h2 id="panel-getting-started">Getting started</h2>
       <ul>
+        <li><a href="#about" class="about-link" data-about-trigger>About</a></li>
         <li><a href="#one-time-setup">One-time setup</a></li>
         <li><a href="#browse">Browse plugins</a></li>
         <li><a href="#install">Install a plugin</a></li>
@@ -414,6 +490,48 @@
 
 </main>
 
+<!-- LM-14: About dialog. Body is the rendered HTML of the <info> block in
+     marketplace.template.md, substituted here as <h2 id="plugins-and-skills">Plugins and skills</h2>
+<p>Two terms you will see throughout this site:</p>
+<p><strong>Plugin</strong> — the installable package. A plugin is what
+this marketplace distributes, what you install with
+<code>/plugin install</code>, and what lives in a repository as a
+structured directory. A plugin can contain one or more skills, an MCP
+server, configuration, and documentation.</p>
+<p><strong>Skill</strong> — an individual <code>/command</code> within a
+plugin. When you type <code>/example-skill</code>, you are invoking a
+skill. Skills are defined by a prompt file (<code>SKILL.md</code>)
+inside the plugin and can optionally call tools exposed by an MCP
+server.</p>
+<p>In practice, many plugins contain exactly one skill with the same
+name as the plugin itself. More capable plugins may bundle several
+related skills together.</p>
+. -->
+<dialog id="about-dialog" aria-labelledby="about-dialog-title">
+  <header>
+    <h2 id="about-dialog-title">About this marketplace</h2>
+    <button type="button" class="dialog-close" aria-label="Close">×</button>
+  </header>
+  <div class="dialog-body">
+    <h2 id="plugins-and-skills">Plugins and skills</h2>
+<p>Two terms you will see throughout this site:</p>
+<p><strong>Plugin</strong> — the installable package. A plugin is what
+this marketplace distributes, what you install with
+<code>/plugin install</code>, and what lives in a repository as a
+structured directory. A plugin can contain one or more skills, an MCP
+server, configuration, and documentation.</p>
+<p><strong>Skill</strong> — an individual <code>/command</code> within a
+plugin. When you type <code>/example-skill</code>, you are invoking a
+skill. Skills are defined by a prompt file (<code>SKILL.md</code>)
+inside the plugin and can optionally call tools exposed by an MCP
+server.</p>
+<p>In practice, many plugins contain exactly one skill with the same
+name as the plugin itself. More capable plugins may bundle several
+related skills together.</p>
+
+  </div>
+</dialog>
+
 <script>
   // LM-12: copy-to-clipboard for the install command in the status line.
   // The button reads its source text from the immediately preceding <code>
@@ -450,6 +568,36 @@
         navigator.clipboard.writeText(text).then(ok, function () { fallback(text, ok); });
       } else {
         fallback(text, ok);
+      }
+    });
+  })();
+
+  // LM-14: open About dialog from the sidebar link; close on backdrop
+  // click or close button. Esc to dismiss is handled by <dialog> natively.
+  (function () {
+    var dialog = document.getElementById('about-dialog');
+    if (!dialog) return;
+    document.addEventListener('click', function (e) {
+      var trigger = e.target.closest('[data-about-trigger]');
+      if (trigger) {
+        e.preventDefault();
+        if (typeof dialog.showModal === 'function') {
+          dialog.showModal();
+        } else {
+          dialog.setAttribute('open', '');
+        }
+        return;
+      }
+      var closeBtn = e.target.closest('.dialog-close');
+      if (closeBtn) {
+        var d = closeBtn.closest('dialog');
+        if (d) d.close();
+        return;
+      }
+      // Backdrop click — only when the click target is the <dialog>
+      // element itself (not its descendants).
+      if (e.target === dialog) {
+        dialog.close();
       }
     });
   })();
