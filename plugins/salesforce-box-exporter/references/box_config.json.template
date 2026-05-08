@@ -1,0 +1,13 @@
+{
+  "_comment": "Download this from Box Developer Console: App → Configuration → Generate a Public/Private Keypair. Do NOT commit the real file to source control.",
+  "boxAppSettings": {
+    "clientID": "YOUR_BOX_CLIENT_ID",
+    "clientSecret": "YOUR_BOX_CLIENT_SECRET",
+    "appAuth": {
+      "publicKeyID": "abc12345",
+      "privateKey": "REPLACE_ME_PRIVATE_KEY (multi-line PEM string — copy from the JSON file downloaded via Box Developer Console)",
+      "passphrase": "YOUR_KEY_PASSPHRASE"
+    }
+  },
+  "enterpriseID": "YOUR_ENTERPRISE_ID"
+}

@@ -1,0 +1,10 @@
+# Direct dependencies — pinned to exact versions tested with this skill.
+#
+# Last verified: 2026-04-27 against duckdb 1.5.2, pandas 3.0.2, tabulate 0.10.0
+# on Python 3.12.
+#
+
+
+duckdb==1.5.2
+pandas==3.0.2
+tabulate==0.10.0

@@ -20,6 +20,54 @@
       "source": "./plugins/springboot-codereview",
       "description": "Performs a version-aware code review of Java / Spring Boot changes",
       "version": "0.1.0"
+    },
+    {
+      "name": "springboot-testing",
+      "source": "./plugins/springboot-testing",
+      "description": "Writes Spring Boot unit, slice, and integration tests",
+      "version": "0.1.0"
+    },
+    {
+      "name": "salesforce-login-anomaly-detection",
+      "source": "./plugins/salesforce-login-anomaly-detection",
+      "description": "Detects anomalies in Salesforce login history exports",
+      "version": "0.1.0"
+    },
+    {
+      "name": "salesforce-amount-definitions",
+      "source": "./plugins/salesforce-amount-definitions",
+      "description": "Salesforce/Clari amount-field and revenue-metric reference",
+      "version": "0.1.0"
+    },
+    {
+      "name": "salesforce-box-exporter",
+      "source": "./plugins/salesforce-box-exporter",
+      "description": "Salesforce → Box file exporter (MassDownloader)",
+      "version": "0.1.0"
+    },
+    {
+      "name": "salesforce-security-review",
+      "source": "./plugins/salesforce-security-review",
+      "description": "Salesforce Code Analyzer review for Apex / LWC / Aura",
+      "version": "0.1.0"
+    },
+    {
+      "name": "skill-scanner",
+      "source": "./plugins/skill-scanner",
+      "description": "Safety + security scanner for Claude skills",
+      "version": "0.1.0"
+    },
+    {
+      "name": "incidentresponse",
+      "source": "./plugins/incidentresponse",
+      "description": "Cybersecurity incident response (NIST / SANS playbooks)",
+      "version": "0.1.0"
+    },
+    {
+      "name": "mirantis-carousel-generator",
+      "source": "./plugins/mirantis-carousel-generator",
+      "description": "Instagram carousel PNGs with a fixed gallery aesthetic",
+      "version": "0.1.0"
     }
   ]
 }

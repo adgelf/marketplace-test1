@@ -1,0 +1,194 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.mirantis</groupId>
+    <artifactId>salesforce-box-exporter</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>Salesforce Box Exporter</name>
+    <description>Exports Salesforce files for Accounts, Opportunities, and Contracts into Box folders.</description>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- 2.25.4 fixes CVE-2025-68161 (TLS hostname bypass), CVE-2026-34477
+             (incomplete fix for 68161), CVE-2026-34478 (Rfc5424Layout CRLF
+             injection), and CVE-2026-34480 (XmlLayout forbidden-char loss) -->
+        <log4j.version>2.25.4</log4j.version>
+        <!-- Overrides transitive jose4j pulled in by box-java-sdk or other deps.
+             0.9.6 fixes CVE-2024-29371 (JWE zip-bomb DoS). -->
+        <jose4j.version>0.9.6</jose4j.version>
+        <httpcomponents.version>4.5.14</httpcomponents.version>
+        <json.version>20251224</json.version>
+        <box.sdk.version>4.16.4</box.sdk.version>
+        <!-- Overrides transitive bouncycastle from box-java-sdk to fix
+             CVE-2026-0636 (LDAP injection), CVE-2026-3505 (PGP resource exhaustion),
+             CVE-2026-5588 (broken crypto algorithm) — all fixed in 1.84 -->
+        <bouncycastle.version>1.84</bouncycastle.version>
+        <!-- Overrides transitive jackson-databind from box-java-sdk (2.17.2).
+             2.18.6 fixes GHSA-72hv-8253-57qq (HIGH): async parser number-length
+             constraint bypass leading to memory/CPU DoS — published 2026-02-26. -->
+        <jackson.version>2.18.6</jackson.version>
+        <!-- Overrides transitive okhttp from box-java-sdk (4.12.0).
+             4.12.0 has several MEDIUM advisories; 4.12.0 is unchanged so pinning
+             explicitly ensures Maven resolution doesn't regress via other paths. -->
+        <okhttp.version>4.12.0</okhttp.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>${httpcomponents.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpmime</artifactId>
+            <version>${httpcomponents.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>${json.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.18.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.box</groupId>
+            <artifactId>box-java-sdk</artifactId>
+            <version>${box.sdk.version}</version>
+            <exclusions>
+                <!-- Exclude bouncycastle from box-java-sdk so we can pin
+                     our own version (1.84) that fixes CVE-2026-0636,
+                     CVE-2026-3505, CVE-2026-5588 -->
+                <exclusion>
+                    <groupId>org.bouncycastle</groupId>
+                    <artifactId>bcprov-jdk18on</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.bouncycastle</groupId>
+                    <artifactId>bcpkix-jdk18on</artifactId>
+                </exclusion>
+                <!-- Exclude jose4j from box-java-sdk so we can pin 0.9.6
+                     which fixes CVE-2024-29371 (JWE zip-bomb DoS) -->
+                <exclusion>
+                    <groupId>org.bitbucket.b_c</groupId>
+                    <artifactId>jose4j</artifactId>
+                </exclusion>
+                <!-- Exclude jackson from box-java-sdk so we control the version -->
+                <exclusion>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                    <artifactId>jackson-databind</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                    <artifactId>jackson-core</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                    <artifactId>jackson-annotations</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- Bouncy Castle 1.84: fixes CVE-2026-0636 (LDAP injection),
+             CVE-2026-3505 (PGP AEAD resource exhaustion),
+             CVE-2026-5588 (broken crypto in PKIX CompositeVerifier).
+             Overriding box-java-sdk which bundles 1.82. -->
+        <dependency>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcprov-jdk18on</artifactId>
+            <version>${bouncycastle.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcpkix-jdk18on</artifactId>
+            <version>${bouncycastle.version}</version>
+        </dependency>
+
+        <!-- jose4j 0.9.6 — fixes CVE-2024-29371 (JWE zip-bomb DoS).
+             Overrides whatever version box-java-sdk might pull transitively. -->
+        <dependency>
+            <groupId>org.bitbucket.b_c</groupId>
+            <artifactId>jose4j</artifactId>
+            <version>${jose4j.version}</version>
+        </dependency>
+
+        <!-- Jackson 2.18.6 (LTS) — fixes GHSA-72hv-8253-57qq (async parser DoS)
+             and overrides the 2.17.2 bundled by box-java-sdk -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+                <configuration>
+                    <release>17</release>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>appassembler-maven-plugin</artifactId>
+                <version>2.1.0</version>
+                <configuration>
+                    <assembleDirectory>${project.build.directory}/app</assembleDirectory>
+                    <programs>
+                        <program>
+                            <mainClass>com.mirantis.massdownloader.MassDownloaderApplication</mainClass>
+                            <name>mass-exporter</name>
+                        </program>
+                    </programs>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>appassembler</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>assemble</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

@@ -1,0 +1,43 @@
+# =============================================================================
+# Salesforce → Box Exporter Configuration
+# Replace every REPLACE_ME_* value below with your real credentials.
+# Never commit this file to source control once filled in.
+# =============================================================================
+
+# --- Salesforce OAuth ---------------------------------------------------------
+# Production orgs: https://login.salesforce.com/services/oauth2/token
+# Sandbox orgs:    https://test.salesforce.com/services/oauth2/token
+sf.oauth.base-url=https://login.salesforce.com/services/oauth2/token
+
+# Connected App credentials (Salesforce Setup → App Manager → your connected app)
+sf.client.id=REPLACE_ME_SF_CLIENT_ID
+sf.client.secret=REPLACE_ME_SF_CLIENT_SECRET
+
+# Your Salesforce login credentials
+sf.username=REPLACE_ME_SF_USERNAME
+sf.password=REPLACE_ME_SF_PASSWORD
+
+# Security token (Salesforce → avatar → Settings → Personal → Reset My Security Token)
+sf.security.token=REPLACE_ME_SF_SECURITY_TOKEN
+
+# API version — change only if your org requires a specific version
+sf.salesforce.api.version=65.0
+
+# --- Box ----------------------------------------------------------------------
+# Path to your box_config.json (replace this file in config/ with the real one
+# downloaded from Box Developer Console → App → Configuration → Generate Keypair)
+box.config.path=config/box_config.json
+
+# The Box folder ID where the export root will be created
+# Find it in Box web UI: open the folder → copy the number from the URL
+box.root.folder.id=REPLACE_ME_BOX_ROOT_FOLDER_ID
+
+# Optional: Box app user ID to impersonate. Leave blank to use enterprise connection.
+box.app.user.id=REPLACE_ME_BOX_APP_USER_ID
+
+# --- Export settings (optional) -----------------------------------------------
+# Number of parallel worker threads (default: min(4, CPU count))
+export.worker.threads=4
+
+# Temp directory for files during transfer (default: system temp)
+export.temp.dir=/tmp
