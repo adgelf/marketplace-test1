@@ -14,6 +14,12 @@
       "source": "./plugins/threadmodeller",
       "description": "Threat modeling skill (test plugin)",
       "version": "0.1.0"
+    },
+    {
+      "name": "springboot-codereview",
+      "source": "./plugins/springboot-codereview",
+      "description": "Performs a version-aware code review of Java / Spring Boot changes",
+      "version": "0.1.0"
     }
   ]
 }
