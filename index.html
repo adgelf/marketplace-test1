@@ -180,26 +180,10 @@
     overflow: hidden;
   }
 
-  .tile-info {
-    /* Decorative cue — actual click target is the parent .tile <a>.
-       Was nested as <a> in earlier drafts which produced a parser
-       hoist out of the surrounding anchor and stacked every (i) at
-       the viewport top-right corner. */
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    background: rgba(0, 16, 33, 0.06);
-    color: var(--fg-body);
-    display: grid;
-    place-items: center;
-    font-size: 11px;
-    font-weight: 700;
-    line-height: 1;
-    pointer-events: none;
-  }
+  /* .tile-info (the per-tile (i) corner cue) is intentionally NOT
+     defined here. It was disabled because the buggy first version
+     duplicated the tile's own click target. Bringing it back will
+     come with a real distinct action — see ROADMAP.md. */
 
   /* ------------------------------------------------------------------ */
   /* Sidebar (right column)                                              */
@@ -431,7 +415,6 @@
         <p class="tile-title">Threadmodeller</p>
         <p class="tile-desc">Threat modeling skill (test plugin)</p>
       </div>
-      <span class="tile-info" aria-hidden="true">i</span>
     </a>
     <a class="tile" id="springboot-codereview" href="./plugins/springboot-codereview/README.md" aria-label="Springboot Codereview — Performs a version-aware code review of Java / Spring Boot changes">
       <span class="tile-icon" aria-hidden="true">SC</span>
@@ -439,7 +422,6 @@
         <p class="tile-title">Springboot Codereview</p>
         <p class="tile-desc">Performs a version-aware code review of Java / Spring Boot changes</p>
       </div>
-      <span class="tile-info" aria-hidden="true">i</span>
     </a>
     <a class="tile" id="springboot-testing" href="./plugins/springboot-testing/README.md" aria-label="Springboot Testing — Writes Spring Boot unit, slice, and integration tests">
       <span class="tile-icon" aria-hidden="true">ST</span>
@@ -447,7 +429,6 @@
         <p class="tile-title">Springboot Testing</p>
         <p class="tile-desc">Writes Spring Boot unit, slice, and integration tests</p>
       </div>
-      <span class="tile-info" aria-hidden="true">i</span>
     </a>
     <a class="tile" id="salesforce-login-anomaly-detection" href="./plugins/salesforce-login-anomaly-detection/README.md" aria-label="Salesforce Login Anomaly Detection — Detects anomalies in Salesforce login history exports">
       <span class="tile-icon" aria-hidden="true">SL</span>
@@ -455,7 +436,6 @@
         <p class="tile-title">Salesforce Login Anomaly Detection</p>
         <p class="tile-desc">Detects anomalies in Salesforce login history exports</p>
       </div>
-      <span class="tile-info" aria-hidden="true">i</span>
     </a>
     <a class="tile" id="salesforce-amount-definitions" href="./plugins/salesforce-amount-definitions/README.md" aria-label="Salesforce Amount Definitions — Salesforce/Clari amount-field and revenue-metric reference">
       <span class="tile-icon" aria-hidden="true">SA</span>
@@ -463,7 +443,6 @@
         <p class="tile-title">Salesforce Amount Definitions</p>
         <p class="tile-desc">Salesforce/Clari amount-field and revenue-metric reference</p>
       </div>
-      <span class="tile-info" aria-hidden="true">i</span>
     </a>
     <a class="tile" id="salesforce-box-exporter" href="./plugins/salesforce-box-exporter/README.md" aria-label="Salesforce Box Exporter — Salesforce → Box file exporter (MassDownloader)">
       <span class="tile-icon" aria-hidden="true">SB</span>
@@ -471,7 +450,6 @@
         <p class="tile-title">Salesforce Box Exporter</p>
         <p class="tile-desc">Salesforce → Box file exporter (MassDownloader)</p>
       </div>
-      <span class="tile-info" aria-hidden="true">i</span>
     </a>
     <a class="tile" id="salesforce-security-review" href="./plugins/salesforce-security-review/README.md" aria-label="Salesforce Security Review — Salesforce Code Analyzer review for Apex / LWC / Aura">
       <span class="tile-icon" aria-hidden="true">SS</span>
@@ -479,7 +457,6 @@
         <p class="tile-title">Salesforce Security Review</p>
         <p class="tile-desc">Salesforce Code Analyzer review for Apex / LWC / Aura</p>
       </div>
-      <span class="tile-info" aria-hidden="true">i</span>
     </a>
     <a class="tile" id="skill-scanner" href="./plugins/skill-scanner/README.md" aria-label="Skill Scanner — Safety + security scanner for Claude skills">
       <span class="tile-icon" aria-hidden="true">SS</span>
@@ -487,7 +464,6 @@
         <p class="tile-title">Skill Scanner</p>
         <p class="tile-desc">Safety + security scanner for Claude skills</p>
       </div>
-      <span class="tile-info" aria-hidden="true">i</span>
     </a>
     <a class="tile" id="incidentresponse" href="./plugins/incidentresponse/README.md" aria-label="Incidentresponse — Cybersecurity incident response (NIST / SANS playbooks)">
       <span class="tile-icon" aria-hidden="true">IN</span>
@@ -495,7 +471,6 @@
         <p class="tile-title">Incidentresponse</p>
         <p class="tile-desc">Cybersecurity incident response (NIST / SANS playbooks)</p>
       </div>
-      <span class="tile-info" aria-hidden="true">i</span>
     </a>
     <a class="tile" id="mirantis-carousel-generator" href="./plugins/mirantis-carousel-generator/README.md" aria-label="Mirantis Carousel Generator — Instagram carousel PNGs with a fixed gallery aesthetic">
       <span class="tile-icon" aria-hidden="true">MC</span>
@@ -503,7 +478,6 @@
         <p class="tile-title">Mirantis Carousel Generator</p>
         <p class="tile-desc">Instagram carousel PNGs with a fixed gallery aesthetic</p>
       </div>
-      <span class="tile-info" aria-hidden="true">i</span>
     </a>
   </section>
 
