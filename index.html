@@ -266,9 +266,9 @@
   }
 
   /* ------------------------------------------------------------------ */
-  /* About dialog (LM-14)                                                */
+  /* Info dialog (LM-14, expanded by LM-15)                              */
   /* ------------------------------------------------------------------ */
-  dialog#about-dialog {
+  dialog#info-dialog {
     max-width: 560px;
     width: calc(100% - 32px);
     padding: 0;
@@ -278,11 +278,11 @@
     color: var(--fg-body);
     box-shadow: 0 24px 64px rgba(0, 16, 33, 0.25);
   }
-  dialog#about-dialog::backdrop {
+  dialog#info-dialog::backdrop {
     background: rgba(0, 16, 33, 0.5);
     backdrop-filter: blur(2px);
   }
-  dialog#about-dialog header {
+  dialog#info-dialog header {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -290,13 +290,13 @@
     padding: 14px 20px;
     border-bottom: 1px solid var(--border-soft);
   }
-  dialog#about-dialog header h2 {
+  dialog#info-dialog header h2 {
     margin: 0;
     font-size: 18px;
     font-weight: 700;
     color: var(--fg-heading);
   }
-  dialog#about-dialog .dialog-close {
+  dialog#info-dialog .dialog-close {
     width: 28px;
     height: 28px;
     padding: 0;
@@ -308,37 +308,37 @@
     line-height: 1;
     cursor: pointer;
   }
-  dialog#about-dialog .dialog-close:hover {
+  dialog#info-dialog .dialog-close:hover {
     background: rgba(0, 16, 33, 0.06);
     color: var(--fg-title);
   }
-  dialog#about-dialog .dialog-body {
+  dialog#info-dialog .dialog-body {
     padding: 16px 20px 20px;
     max-height: 60vh;
     overflow: auto;
     font-size: 14px;
     line-height: 1.6;
   }
-  dialog#about-dialog .dialog-body :first-child { margin-top: 0; }
-  dialog#about-dialog .dialog-body :last-child  { margin-bottom: 0; }
-  dialog#about-dialog .dialog-body h1,
-  dialog#about-dialog .dialog-body h2,
-  dialog#about-dialog .dialog-body h3 {
+  dialog#info-dialog .dialog-body :first-child { margin-top: 0; }
+  dialog#info-dialog .dialog-body :last-child  { margin-bottom: 0; }
+  dialog#info-dialog .dialog-body h1,
+  dialog#info-dialog .dialog-body h2,
+  dialog#info-dialog .dialog-body h3 {
     font-size: 15px;
     font-weight: 700;
     color: var(--fg-heading);
     margin: 14px 0 6px;
   }
-  dialog#about-dialog .dialog-body p { margin: 0 0 10px; }
-  dialog#about-dialog .dialog-body code {
+  dialog#info-dialog .dialog-body p { margin: 0 0 10px; }
+  dialog#info-dialog .dialog-body code {
     font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     background: rgba(0, 16, 33, 0.06);
     padding: 1px 6px;
     border-radius: 4px;
     font-size: 0.9em;
   }
-  dialog#about-dialog .dialog-body strong { color: var(--fg-title); }
-  .about-link { cursor: pointer; }
+  dialog#info-dialog .dialog-body strong { color: var(--fg-title); }
+  [data-info-trigger] { cursor: pointer; }
 
   /* ------------------------------------------------------------------ */
   /* Copy-to-clipboard button (LM-12)                                    */
@@ -429,11 +429,12 @@
     <section class="panel" aria-labelledby="panel-getting-started">
       <h2 id="panel-getting-started">Getting started</h2>
       <ul>
-        <li><a href="#about" class="about-link" data-about-trigger>About</a></li>
-        <li><a href="#one-time-setup">One-time setup</a></li>
-        <li><a href="#browse">Browse plugins</a></li>
-        <li><a href="#install">Install a plugin</a></li>
-        <li><a href="#update">Keep plugins updated</a></li>
+        <li><a href="#about"        data-info-trigger="info">About</a></li>
+        <li><a href="#one-time-setup" data-info-trigger="setup">One-time setup</a></li>
+        <li><a href="#browse"       data-info-trigger="browse">Browse plugins</a></li>
+        <li><a href="#install"      data-info-trigger="install">Install a plugin</a></li>
+        <li><a href="#useskill"     data-info-trigger="useskill">Use a skill</a></li>
+        <li><a href="#update"       data-info-trigger="keep_updated">Keep plugins updated</a></li>
       </ul>
     </section>
 
@@ -490,30 +491,20 @@
 
 </main>
 
-<!-- LM-14: About dialog. Body is the rendered HTML of the <info> block in
-     marketplace.template.md, substituted here as <h2 id="plugins-and-skills">Plugins and skills</h2>
-<p>Two terms you will see throughout this site:</p>
-<p><strong>Plugin</strong> — the installable package. A plugin is what
-this marketplace distributes, what you install with
-<code>/plugin install</code>, and what lives in a repository as a
-structured directory. A plugin can contain one or more skills, an MCP
-server, configuration, and documentation.</p>
-<p><strong>Skill</strong> — an individual <code>/command</code> within a
-plugin. When you type <code>/example-skill</code>, you are invoking a
-skill. Skills are defined by a prompt file (<code>SKILL.md</code>)
-inside the plugin and can optionally call tools exposed by an MCP
-server.</p>
-<p>In practice, many plugins contain exactly one skill with the same
-name as the plugin itself. More capable plugins may bundle several
-related skills together.</p>
-. -->
-<dialog id="about-dialog" aria-labelledby="about-dialog-title">
+<!-- LM-14/15: Info dialog. The body holds one hidden <section> per
+     marketplace.template.md tag block (info, setup, browse, install,
+     useskill, keep_updated). Each section is pre-rendered to HTML by
+     pandoc in the workflow and substituted here via {<TAG>-HTML}
+     placeholders. The sidebar links below carry data-info-trigger=<tag>;
+     the JS handler reveals the matching section, hides the others, and
+     uses the link's text as the dialog title. -->
+<dialog id="info-dialog" aria-labelledby="info-dialog-title">
   <header>
-    <h2 id="about-dialog-title">About this marketplace</h2>
+    <h2 id="info-dialog-title"></h2>
     <button type="button" class="dialog-close" aria-label="Close">×</button>
   </header>
   <div class="dialog-body">
-    <h2 id="plugins-and-skills">Plugins and skills</h2>
+    <section data-section="info"          hidden><h2 id="plugins-and-skills">Plugins and skills</h2>
 <p>Two terms you will see throughout this site:</p>
 <p><strong>Plugin</strong> — the installable package. A plugin is what
 this marketplace distributes, what you install with
@@ -527,8 +518,30 @@ inside the plugin and can optionally call tools exposed by an MCP
 server.</p>
 <p>In practice, many plugins contain exactly one skill with the same
 name as the plugin itself. More capable plugins may bundle several
-related skills together.</p>
-
+related skills together.</p></section>
+    <section data-section="setup"         hidden><p>You need <strong>Claude Code</strong> installed and running. If you
+haven’t done that yet, ask IT — setup takes about five minutes and your
+Mirantis credentials are all you need.</p>
+<hr />
+<p>Add the Mirantis plugins marketplace to your Claude Code
+installation. Open a terminal, start Claude Code, and run:</p>
+<pre><code>/plugin marketplace add adgelf/marketplace-test1</code></pre>
+<p>You only need to do this once. Claude Code will remember it.</p></section>
+    <section data-section="browse"        hidden><p>To see what’s available:</p>
+<pre><code>/plugin list</code></pre></section>
+    <section data-section="install"       hidden><pre><code>/plugin install &lt;plugin-name&gt;@mirantis-plugins</code></pre>
+<p>Replace <code>&lt;plugin-name&gt;</code> with the name of the plugin
+you want. For example:</p>
+<pre><code>/plugin install example-skill@mirantis-plugins</code></pre></section>
+    <section data-section="useskill"      hidden><p>Once a plugin is installed, invoke its skill by typing <code>/</code>
+followed by the skill name:</p>
+<pre><code>/example-skill</code></pre>
+<p>Claude Code will run the skill in the context of whatever you’re
+working on.</p></section>
+    <section data-section="keep_updated"  hidden><p>When new plugins are added or existing ones are updated, refresh your
+local list:</p>
+<pre><code>/plugin marketplace update mplace1</code></pre>
+<p>Then reinstall any plugins you want to update.</p></section>
   </div>
 </dialog>
 
@@ -572,20 +585,34 @@ related skills together.</p>
     });
   })();
 
-  // LM-14: open About dialog from the sidebar link; close on backdrop
-  // click or close button. Esc to dismiss is handled by <dialog> natively.
+  // LM-14/15: open the info dialog with the section matching the
+  // clicked link's data-info-trigger. Close on backdrop, close button,
+  // or Esc (Esc is native to <dialog>). The dialog title mirrors the
+  // link's text content so it always reflects what the user clicked.
   (function () {
-    var dialog = document.getElementById('about-dialog');
+    var dialog = document.getElementById('info-dialog');
     if (!dialog) return;
+    var titleEl = document.getElementById('info-dialog-title');
+
+    function showSection(tag, displayTitle) {
+      var sections = dialog.querySelectorAll('[data-section]');
+      for (var i = 0; i < sections.length; i++) {
+        sections[i].hidden = sections[i].getAttribute('data-section') !== tag;
+      }
+      if (titleEl) titleEl.textContent = displayTitle || '';
+      if (typeof dialog.showModal === 'function') {
+        dialog.showModal();
+      } else {
+        dialog.setAttribute('open', '');
+      }
+    }
+
     document.addEventListener('click', function (e) {
-      var trigger = e.target.closest('[data-about-trigger]');
+      var trigger = e.target.closest('[data-info-trigger]');
       if (trigger) {
         e.preventDefault();
-        if (typeof dialog.showModal === 'function') {
-          dialog.showModal();
-        } else {
-          dialog.setAttribute('open', '');
-        }
+        showSection(trigger.getAttribute('data-info-trigger'),
+                    trigger.textContent.trim());
         return;
       }
       var closeBtn = e.target.closest('.dialog-close');
