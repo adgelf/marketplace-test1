@@ -124,7 +124,11 @@
     transition: background 120ms ease, box-shadow 120ms ease, transform 120ms ease;
     text-decoration: none;
     color: inherit;
-    min-height: 88px;
+    /* LM-16: every tile is the same size. Title is clamped to 3 lines
+       and description to 2 lines below; anything longer is truncated
+       with an ellipsis by -webkit-line-clamp. */
+    height: 132px;
+    overflow: hidden;
   }
   .tile:hover {
     background: var(--bg-tile-hover);
@@ -156,6 +160,11 @@
     font-weight: 700;
     color: var(--fg-title);
     line-height: 1.25;
+    /* LM-16: title up to 3 lines, ellipsis if longer. */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
   .tile-desc {
     margin: 0;
@@ -163,6 +172,11 @@
     font-weight: 400;
     color: var(--fg-desc);
     line-height: 1.4;
+    /* LM-16: description clamped so the tile stays uniform. */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 
   .tile-info {
