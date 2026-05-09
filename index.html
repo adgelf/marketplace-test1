@@ -388,6 +388,37 @@
     white-space: nowrap;
     pointer-events: none;
   }
+
+  /* ------------------------------------------------------------------ */
+  /* Inline clipboard block (LM-17)                                      */
+  /* ------------------------------------------------------------------ */
+  .clipboard {
+    position: relative;
+    margin: 12px 0;
+  }
+  .clipboard pre {
+    margin: 0;
+    padding: 8px 44px 8px 10px;
+    background: rgba(0, 16, 33, 0.06);
+    border-radius: 4px;
+    overflow-x: auto;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+  .clipboard pre code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+    font-size: inherit;
+    color: var(--fg-heading);
+  }
+  .clipboard > .copy-btn {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    margin-left: 0;
+  }
 </style>
 </head>
 <body>
@@ -399,7 +430,7 @@
     <div class="meta">
       <strong>10</strong> plugins ·
       version <strong>0.2.0</strong> ·
-      updated <strong>2026-05-08</strong> ·
+      updated <strong>2026-05-09</strong> ·
       add with <code>/plugin marketplace add adgelf/marketplace-test1</code><button type="button" class="copy-btn" aria-label="Copy install command"><svg class="icon-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button>
     </div>
   </header>
@@ -590,22 +621,22 @@ Mirantis credentials are all you need.</p>
 <hr />
 <p>Add the Mirantis plugins marketplace to your Claude Code
 installation. Open a terminal, start Claude Code, and run:</p>
-<pre><code>/plugin marketplace add adgelf/marketplace-test1</code></pre>
+<div class="clipboard"><pre><code>/plugin marketplace add adgelf/marketplace-test1</code></pre><button type="button" class="copy-btn" aria-label="Copy"><svg class="icon-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div>
 <p>You only need to do this once. Claude Code will remember it.</p></section>
     <section data-section="browse"        hidden><p>To see what’s available:</p>
-<pre><code>/plugin list</code></pre></section>
-    <section data-section="install"       hidden><pre><code>/plugin install &lt;plugin-name&gt;@mirantis-plugins</code></pre>
+<div class="clipboard"><pre><code>/plugin list</code></pre><button type="button" class="copy-btn" aria-label="Copy"><svg class="icon-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div></section>
+    <section data-section="install"       hidden><div class="clipboard"><pre><code>/plugin install &lt;plugin-name&gt;@mirantis-plugins</code></pre><button type="button" class="copy-btn" aria-label="Copy"><svg class="icon-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div>
 <p>Replace <code>&lt;plugin-name&gt;</code> with the name of the plugin
 you want. For example:</p>
-<pre><code>/plugin install example-skill@mirantis-plugins</code></pre></section>
+<div class="clipboard"><pre><code>/plugin install example-skill@mirantis-plugins</code></pre><button type="button" class="copy-btn" aria-label="Copy"><svg class="icon-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div></section>
     <section data-section="useskill"      hidden><p>Once a plugin is installed, invoke its skill by typing <code>/</code>
 followed by the skill name:</p>
-<pre><code>/example-skill</code></pre>
+<div class="clipboard"><pre><code>/example-skill</code></pre><button type="button" class="copy-btn" aria-label="Copy"><svg class="icon-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div>
 <p>Claude Code will run the skill in the context of whatever you’re
 working on.</p></section>
     <section data-section="keep_updated"  hidden><p>When new plugins are added or existing ones are updated, refresh your
 local list:</p>
-<pre><code>/plugin marketplace update mplace1</code></pre>
+<div class="clipboard"><pre><code>/plugin marketplace update mplace1</code></pre><button type="button" class="copy-btn" aria-label="Copy"><svg class="icon-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div>
 <p>Then reinstall any plugins you want to update.</p></section>
   </div>
 </dialog>
@@ -638,9 +669,15 @@ local list:</p>
     document.addEventListener('click', function (e) {
       var btn = e.target.closest('.copy-btn');
       if (!btn) return;
+      // LM-12: install command lives in a <code> sibling.
+      // LM-17: clipboard blocks render as <pre><code>...</code></pre>
+      // followed by the button. Accept either; for <pre>, prefer the
+      // inner <code> if present.
       var src = btn.previousElementSibling;
-      if (!src || src.tagName !== 'CODE') return;
-      var text = src.textContent.trim();
+      if (!src) return;
+      if (src.tagName !== 'CODE' && src.tagName !== 'PRE') return;
+      var node = src.tagName === 'PRE' ? (src.querySelector('code') || src) : src;
+      var text = node.textContent.replace(/^\s+|\s+$/g, '');
       var ok = function () { flash(btn); };
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(text).then(ok, function () { fallback(text, ok); });

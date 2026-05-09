@@ -30,9 +30,11 @@ You need **Claude Code** installed and running. If you haven't done that yet, as
 
 Add the Mirantis plugins marketplace to your Claude Code installation. Open a terminal, start Claude Code, and run:
 
+<clipboard>
 ```
 /plugin marketplace add adgelf/marketplace-test1
 ```
+</clipboard>
 
 You only need to do this once. Claude Code will remember it.
 
@@ -45,9 +47,11 @@ You only need to do this once. Claude Code will remember it.
 
 To see what's available:
 
+<clipboard>
 ```
 /plugin list
 ```
+</clipboard>
 
 </browse>
 ---
@@ -56,15 +60,19 @@ To see what's available:
 ## Install a plugin
 
 <install>
+<clipboard>
 ```
 /plugin install <plugin-name>@mirantis-plugins
 ```
+</clipboard>
 
 Replace `<plugin-name>` with the name of the plugin you want. For example:
 
+<clipboard>
 ```
 /plugin install example-skill@mirantis-plugins
 ```
+</clipboard>
 
 </install>
 ---
@@ -75,9 +83,11 @@ Replace `<plugin-name>` with the name of the plugin you want. For example:
 
 Once a plugin is installed, invoke its skill by typing `/` followed by the skill name:
 
+<clipboard>
 ```
 /example-skill
 ```
+</clipboard>
 
 Claude Code will run the skill in the context of whatever you're working on.
 
@@ -90,9 +100,11 @@ Claude Code will run the skill in the context of whatever you're working on.
 
 When new plugins are added or existing ones are updated, refresh your local list:
 
+<clipboard>
 ```
 /plugin marketplace update mplace1
 ```
+</clipboard>
 
 Then reinstall any plugins you want to update.
 
