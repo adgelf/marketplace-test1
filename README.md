@@ -47,7 +47,7 @@ You only need to do this once. Claude Code will remember it.
 
 <browse>
 
-To see what's available:
+To see what plugins are available, in Claude Code type:
 
 <clipboard>
 ```
@@ -62,9 +62,12 @@ To see what's available:
 ## Install a plugin
 
 <install>
+
+To install a plugin, in Claude Code type:
+
 <clipboard>
 ```
-/plugin install <plugin-name>@mirantis-plugins
+/plugin install <plugin-name>@mplace1
 ```
 </clipboard>
 
@@ -72,18 +75,18 @@ Replace `<plugin-name>` with the name of the plugin you want. For example:
 
 <clipboard>
 ```
-/plugin install example-skill@mirantis-plugins
+/plugin install example-skill@mplace1
 ```
 </clipboard>
 
 </install>
 ---
 
-## Use a skill
+## Use a plugin skill
 
 <useskill>
 
-Once a plugin is installed, invoke its skill by typing `/` followed by the skill name:
+Once a plugin is installed in Claude Code, invoke its skill by typing `/` followed by the skill name:
 
 <clipboard>
 ```
@@ -100,7 +103,7 @@ Claude Code will run the skill in the context of whatever you're working on.
 
 <keep_updated>
 
-When new plugins are added or existing ones are updated, refresh your local list:
+When new plugins are added or existing ones are updated, refresh your local list by typing the following command in Claude Code:
 
 <clipboard>
 ```
