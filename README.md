@@ -13,11 +13,13 @@ This marketplace is where Mirantis teams share Claude Code plugins — packaged 
 
 Two terms you will see throughout this site:
 
-**Plugin** — the installable package. A plugin is what this marketplace distributes, what you install with `/plugin install`, and what lives in a repository as a structured directory. A plugin can contain one or more skills, an MCP server, configuration, and documentation.
+A **skill** extends AI agent capabilities with specialized knowledge and workflows. They work in claude.ai, the desktop/mobile apps, Cowork, the API, and Claude Code. Anthropic positioned skills as a portable standard, and they've actually been adopted beyond Anthropic (Codex, Gemini CLI).
 
-**Skill** — an individual `/command` within a plugin. When you type `/example-skill`, you are invoking a skill. Skills are defined by a prompt file (`SKILL.md`) inside the plugin and can optionally call tools exposed by an MCP server.
+A **plugin** is a self-contained directory of components that extends Claude Code with custom functionality. Plugin components include skills, agents, hooks, MCP servers, LSP servers, and monitors.
 
 In practice, many plugins contain exactly one skill with the same name as the plugin itself. More capable plugins may bundle several related skills together.
+
+This marketplace distributes both skills and plugins. You can click on a tile that represents a skill and download a .skill file that can be directly installed in your agent.
 
 </info>
 ---
