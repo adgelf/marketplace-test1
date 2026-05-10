@@ -185,6 +185,27 @@
      duplicated the tile's own click target. Bringing it back will
      come with a real distinct action — see ROADMAP.md. */
 
+  /* LM-18 / LM-19: kind badges in the lower-right corner of a tile.
+     The wrapper is positioned absolutely so the badges hug the corner
+     regardless of how much description text wraps above. pointer-events
+     is disabled so badges never intercept the parent <a>'s click. */
+  .tile-kind-badges {
+    position: absolute;
+    bottom: 6px;
+    right: 6px;
+    display: flex;
+    gap: 4px;
+    pointer-events: none;
+  }
+  .tile-kind-badge {
+    width: 22px;
+    height: 22px;
+    border-radius: 4px;
+    background: var(--bg-panel);
+    box-shadow: var(--shadow-sm);
+    object-fit: contain;
+  }
+
   /* ------------------------------------------------------------------ */
   /* Sidebar (right column)                                              */
   /* ------------------------------------------------------------------ */
@@ -430,7 +451,7 @@
     <div class="meta">
       <strong>10</strong> plugins ·
       version <strong>0.2.0</strong> ·
-      updated <strong>2026-05-09</strong> ·
+      updated <strong>2026-05-10</strong> ·
       add with <code>/plugin marketplace add adgelf/marketplace-test1</code><button type="button" class="copy-btn" aria-label="Copy install command"><svg class="icon-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button>
     </div>
   </header>
@@ -446,6 +467,7 @@
         <p class="tile-title">Threadmodeller</p>
         <p class="tile-desc">Threat modeling skill (test plugin)</p>
       </div>
+      <span class="tile-kind-badges" aria-hidden="true"><img class="tile-kind-badge tile-kind-badge--skill" src="./docs/skill-icon.png" alt="" title="Agent skill"></span>
     </a>
     <a class="tile" id="springboot-codereview" href="./plugins/springboot-codereview/README.md" aria-label="Springboot Codereview — Performs a version-aware code review of Java / Spring Boot changes">
       <span class="tile-icon" aria-hidden="true">SC</span>
@@ -453,6 +475,7 @@
         <p class="tile-title">Springboot Codereview</p>
         <p class="tile-desc">Performs a version-aware code review of Java / Spring Boot changes</p>
       </div>
+      <span class="tile-kind-badges" aria-hidden="true"><img class="tile-kind-badge tile-kind-badge--skill" src="./docs/skill-icon.png" alt="" title="Agent skill"></span>
     </a>
     <a class="tile" id="springboot-testing" href="./plugins/springboot-testing/README.md" aria-label="Springboot Testing — Writes Spring Boot unit, slice, and integration tests">
       <span class="tile-icon" aria-hidden="true">ST</span>
@@ -460,6 +483,7 @@
         <p class="tile-title">Springboot Testing</p>
         <p class="tile-desc">Writes Spring Boot unit, slice, and integration tests</p>
       </div>
+      <span class="tile-kind-badges" aria-hidden="true"><img class="tile-kind-badge tile-kind-badge--skill" src="./docs/skill-icon.png" alt="" title="Agent skill"></span>
     </a>
     <a class="tile" id="salesforce-login-anomaly-detection" href="./plugins/salesforce-login-anomaly-detection/README.md" aria-label="Salesforce Login Anomaly Detection — Detects anomalies in Salesforce login history exports">
       <span class="tile-icon" aria-hidden="true">SL</span>
@@ -467,6 +491,7 @@
         <p class="tile-title">Salesforce Login Anomaly Detection</p>
         <p class="tile-desc">Detects anomalies in Salesforce login history exports</p>
       </div>
+      <span class="tile-kind-badges" aria-hidden="true"><img class="tile-kind-badge tile-kind-badge--skill" src="./docs/skill-icon.png" alt="" title="Agent skill"></span>
     </a>
     <a class="tile" id="salesforce-amount-definitions" href="./plugins/salesforce-amount-definitions/README.md" aria-label="Salesforce Amount Definitions — Salesforce/Clari amount-field and revenue-metric reference">
       <span class="tile-icon" aria-hidden="true">SA</span>
@@ -474,6 +499,7 @@
         <p class="tile-title">Salesforce Amount Definitions</p>
         <p class="tile-desc">Salesforce/Clari amount-field and revenue-metric reference</p>
       </div>
+      <span class="tile-kind-badges" aria-hidden="true"><img class="tile-kind-badge tile-kind-badge--skill" src="./docs/skill-icon.png" alt="" title="Agent skill"></span>
     </a>
     <a class="tile" id="salesforce-box-exporter" href="./plugins/salesforce-box-exporter/README.md" aria-label="Salesforce Box Exporter — Salesforce → Box file exporter (MassDownloader)">
       <span class="tile-icon" aria-hidden="true">SB</span>
@@ -481,6 +507,7 @@
         <p class="tile-title">Salesforce Box Exporter</p>
         <p class="tile-desc">Salesforce → Box file exporter (MassDownloader)</p>
       </div>
+      <span class="tile-kind-badges" aria-hidden="true"><img class="tile-kind-badge tile-kind-badge--skill" src="./docs/skill-icon.png" alt="" title="Agent skill"></span>
     </a>
     <a class="tile" id="salesforce-security-review" href="./plugins/salesforce-security-review/README.md" aria-label="Salesforce Security Review — Salesforce Code Analyzer review for Apex / LWC / Aura">
       <span class="tile-icon" aria-hidden="true">SS</span>
@@ -488,6 +515,7 @@
         <p class="tile-title">Salesforce Security Review</p>
         <p class="tile-desc">Salesforce Code Analyzer review for Apex / LWC / Aura</p>
       </div>
+      <span class="tile-kind-badges" aria-hidden="true"><img class="tile-kind-badge tile-kind-badge--skill" src="./docs/skill-icon.png" alt="" title="Agent skill"></span>
     </a>
     <a class="tile" id="skill-scanner" href="./plugins/skill-scanner/README.md" aria-label="Skill Scanner — Safety + security scanner for Claude skills">
       <span class="tile-icon" aria-hidden="true">SS</span>
@@ -495,6 +523,7 @@
         <p class="tile-title">Skill Scanner</p>
         <p class="tile-desc">Safety + security scanner for Claude skills</p>
       </div>
+      <span class="tile-kind-badges" aria-hidden="true"><img class="tile-kind-badge tile-kind-badge--skill" src="./docs/skill-icon.png" alt="" title="Agent skill"></span>
     </a>
     <a class="tile" id="incidentresponse" href="./plugins/incidentresponse/README.md" aria-label="Incidentresponse — Cybersecurity incident response (NIST / SANS playbooks)">
       <span class="tile-icon" aria-hidden="true">IN</span>
@@ -502,6 +531,7 @@
         <p class="tile-title">Incidentresponse</p>
         <p class="tile-desc">Cybersecurity incident response (NIST / SANS playbooks)</p>
       </div>
+      <span class="tile-kind-badges" aria-hidden="true"><img class="tile-kind-badge tile-kind-badge--skill" src="./docs/skill-icon.png" alt="" title="Agent skill"></span>
     </a>
     <a class="tile" id="mirantis-carousel-generator" href="./plugins/mirantis-carousel-generator/README.md" aria-label="Mirantis Carousel Generator — Instagram carousel PNGs with a fixed gallery aesthetic">
       <span class="tile-icon" aria-hidden="true">MC</span>
@@ -509,6 +539,7 @@
         <p class="tile-title">Mirantis Carousel Generator</p>
         <p class="tile-desc">Instagram carousel PNGs with a fixed gallery aesthetic</p>
       </div>
+      <span class="tile-kind-badges" aria-hidden="true"><img class="tile-kind-badge tile-kind-badge--skill" src="./docs/skill-icon.png" alt="" title="Agent skill"></span>
     </a>
   </section>
 
